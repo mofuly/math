@@ -4,8 +4,8 @@
     box-sizing: border-box;
 }
 
-#paper,
-#menu {
+.paper,
+.menu {
     width: 100%;
     height: 100vh;
     display: flex;
@@ -23,7 +23,8 @@
 }
 
 .hide {
-    visibility: hidden;
+    /* visibility: hidden; */
+    display: none;
 }
 
 .title {
@@ -34,7 +35,7 @@
 }
 
 #back {
-    display: inline-block;
+    /* display: inline-block; */
     width: 40px;
     text-align: center;
     color: #eee;
@@ -44,6 +45,11 @@
     display: inline-block;
     width: calc(100vw - 48px);
     text-align: center;
+}
+
+#paper {
+    flex-grow: 1;
+    overflow: auto;
 }
 
 #menu div {
