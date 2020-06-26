@@ -5,11 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Math</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.css"
+        integrity="sha384-bsHo4/LA+lkZv61JspMDQB9QP1TtO4IgOf2yYS+J6VdAYLVyx1c3XKcsHh0Vy8Ws" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.js"
+        integrity="sha384-4z8mjH4yIpuK9dIQGR1JwbrfYsStrNK6MP+2Enhue4eyo0XlBDXOIPc8b6ZU0ajz" crossorigin="anonymous">
+    </script>
+
     <link rel="stylesheet" href="./index.css">
 </head>
 
 <body>
-    <div class="menu" id="menu"></div>
+    <!-- <div class="menu" id="menu"></div>
     <div class="paper" class="hide">
         <div class="title">
             <span id="back">
@@ -17,6 +24,15 @@
             </span>
         </div>
         <div id="paper"></div>
+    </div> -->
+    <div class="menu hide"></div>
+    <div class="paper hide">
+        <div class="head">
+            <div class="back" onclick="showMenu()">&lt;</div>
+            <div class="title"></div>
+        </div>
+        <div class="content">
+        </div>
     </div>
     <script src="./data.js"></script>
     <script src="./index.js"></script>

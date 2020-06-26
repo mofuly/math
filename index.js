@@ -1,72 +1,61 @@
 "use strict";
-var elMenu = document.querySelector('#menu');
-var elPaper = document.querySelector('.paper');
-function showWindow(which) {
-    switch (which) {
-        case elMenu:
-            elMenu.classList.remove('hide');
-            elPaper.classList.add('hide');
-            break;
-        case elPaper:
-            elPaper.classList.remove('hide');
-            elMenu.classList.add('hide');
-    }
-}
-function showPaper(e) {
-    var html = ['<div class="question">'];
-    var path = './img/';
-    console.log(typeof e);
-    var paperNo = -1;
-    if (typeof e === 'object') {
-        paperNo = e.target.dataset.no;
-    }
-    else {
-        paperNo = e;
-    }
-    var count = papers[paperNo].count;
-    var elTitle = document.querySelector('#title');
-    elTitle.innerHTML = '点击题目显示/隐藏答案';
-    for (var i = 0; i < count; i++) {
-        html.push("<img data-no=\"" + i + "\" class=\"q\" src=\"" + path + "q-" + paperNo + "-" + i + ".png\">");
-        html.push("<img id=\"a-" + i + "\" class=\"a hide\" src=\"" + path + "a-" + paperNo + "-" + i + ".png\">");
-    }
-    html.push('</div>');
-    var el = document.querySelector('#paper');
-    el.innerHTML = html.join('');
-    var q = document.querySelectorAll('.q');
-    q.forEach(function (v) {
-        v.addEventListener('click', showAnswer);
+function showPaper(paperNo) {
+    var elPaper = document.querySelector('.paper');
+    var elMenu = document.querySelector('.menu');
+    var elContent = document.querySelector('.paper .content');
+    var elTitle = document.querySelector('.title');
+    var elBack = document.querySelector('.back');
+    var htmls = [];
+    var questions = papers[paperNo].questions;
+    var answers = papers[paperNo].answers;
+    if (papers.length <= 1)
+        elBack.classList.add('hide');
+    questions.forEach(function (v, i) {
+        var html = "\n            <div class=\"qa\">\n                <div class=\"q\">\n                    <div class=\"key\" data-id=\"#answer-" + i + "\">\n                        " + (i + 1) + "\uD83D\uDD11\n                    </div>\n                    <div class=\"question\">\n                    </div>\n                </div>\n                <div id=\"answer-" + i + "\" class=\"answer hide\">\n                </div>\n            </div>";
+        htmls.push(html);
     });
-    showWindow(elPaper);
-}
-function showAnswer(e) {
-    var target = e.target;
-    var no = target.dataset.no;
-    var selector = "#a-" + no;
-    var answer = document.querySelector(selector);
-    answer === null || answer === void 0 ? void 0 : answer.classList.toggle('hide');
+    elContent.innerHTML = htmls.join('\n');
+    elTitle.innerHTML = papers[paperNo].title + '(共' + papers[paperNo].questions.length + '题)';
+    var elQuestions = document.querySelectorAll('.question');
+    var elAnswers = document.querySelectorAll('.answer');
+    var elKeys = document.querySelectorAll('.key');
+    for (var i = 0; i < elQuestions.length; i++) {
+        katex.render(questions[i], elQuestions[i]);
+        katex.render(answers[i], elAnswers[i]);
+        elKeys[i].addEventListener('click', function (e) {
+            var target = e.target;
+            var id = target.dataset.id;
+            var elAnswer = document.querySelector(id);
+            if (elAnswer)
+                elAnswer.classList.toggle('hide');
+        });
+    }
+    elPaper.classList.remove('hide');
+    elMenu.classList.add('hide');
 }
 function showMenu() {
     if (papers.length === 1) {
         showPaper(0);
         return;
     }
-    var html = [];
-    papers.forEach(function (v, i) {
-        html.push("<div class=\"menu-item\" data-no=\"" + i + "\">" + v.title + "</div>");
-    });
-    elMenu.innerHTML = html.join('');
+    if (papers.length < 1)
+        return;
+    var elMenu = document.querySelector('.menu');
+    var elPaper = document.querySelector('.paper');
+    var htmls = [];
+    for (var i = papers.length - 1; i >= 0; i--) {
+        htmls.push("<div class=\"menu-item\" data-no=\"" + i + "\">" + (papers.length - i) + "--" + papers[i].title + "</div>");
+    }
+    elMenu.innerHTML = htmls.join('');
     var elMenuItems = document.querySelectorAll('.menu-item');
     for (var i = 0; i < elMenuItems.length; i++) {
-        elMenuItems[i].addEventListener('click', showPaper);
+        elMenuItems[i].addEventListener('click', function (e) {
+            var target = e.target;
+            var no = target.dataset.no;
+            showPaper(+no);
+        });
     }
-    showWindow(elMenu);
-}
-var elBack = document.querySelector('#back');
-if (papers.length <= 1) {
-    elBack.classList.add('hide');
-}
-else {
-    elBack.addEventListener('click', showMenu);
+    elMenu.classList.remove('hide');
+    elPaper.classList.add('hide');
 }
 showMenu();
