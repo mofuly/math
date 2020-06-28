@@ -74,3 +74,8 @@
     background-image: url('./close.png');
     background-repeat: no-repeat;
 }
+
+#summary-content {
+    width: 100%;
+    overflow: auto;
+}
