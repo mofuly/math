@@ -3,9 +3,21 @@ var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cook
     if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
     return cooked;
 };
+var ImageType;
+(function (ImageType) {
+    ImageType[ImageType["inverseProportionalFunction"] = 0] = "inverseProportionalFunction";
+    ImageType[ImageType["linearFunction"] = 1] = "linearFunction";
+    ImageType[ImageType["quadraticFunction"] = 2] = "quadraticFunction";
+    ImageType[ImageType["polygan"] = 3] = "polygan";
+    ImageType[ImageType["dashLine"] = 4] = "dashLine";
+    ImageType[ImageType["line"] = 5] = "line";
+    ImageType[ImageType["rectangle"] = 6] = "rectangle";
+})(ImageType || (ImageType = {}));
+;
 var papers = [
     {
         title: '韦达定理',
+        summary: String.raw(__makeTemplateObject(["mathrm{\u5DF2\u77E5}alpha,\betamathrm{\u4E3A\u65B9\u7A0B}:ax^2+bx+c=0(a\neq0),\u5219alpha+\beta=-\frac ba,alpha\beta=\frac ca\u3002\\\u82E5a,bmathrm{\u662F\u4E00\u5143\u4E8C\u6B21\u65B9\u7A0B\u7684\u4E24\u6839}\uFF0Cmathrm{\u5219\u8BE5\u65B9\u7A0B\u4E3A}x^2-(a+b)x+ab=0\u3002"], ["\\mathrm{\u5DF2\u77E5}\\alpha,\\beta\\mathrm{\u4E3A\u65B9\u7A0B}\\:ax^2+bx+c=0(a\\neq0),\u5219\\alpha+\\beta=-\\frac ba,\\alpha\\beta=\\frac ca\u3002\\\\\u82E5a,b\\mathrm{\u662F\u4E00\u5143\u4E8C\u6B21\u65B9\u7A0B\u7684\u4E24\u6839}\uFF0C\\mathrm{\u5219\u8BE5\u65B9\u7A0B\u4E3A}x^2-(a+b)x+ab=0\u3002"])),
         questions: [
             String.raw(__makeTemplateObject(["a,bmathrm{\u662F\u65B9\u7A0B}x^2+4x+1=0mathrm{\u7684\u4E24\u6839},\u6C42:1);\frac1a+\frac1b;;2);left|a-b\right|"], ["a,b\\mathrm{\u662F\u65B9\u7A0B}x^2+4x+1=0\\mathrm{\u7684\u4E24\u6839},\u6C42:1)\\;\\frac1a+\\frac1b\\;\\;2)\\;\\left|a-b\\right|"])),
             String.raw(__makeTemplateObject(["a,bmathrm{\u4E3A\u65B9\u7A0B}x^2-3x+1=0mathrm{\u7684\u4E24\u6839},\u6C42left(\frac ab\right)^2+left(\frac ba\right)^2"], ["a,b\\mathrm{\u4E3A\u65B9\u7A0B}x^2-3x+1=0\\mathrm{\u7684\u4E24\u6839},\u6C42\\left(\\frac ab\\right)^2+\\left(\\frac ba\\right)^2"])),

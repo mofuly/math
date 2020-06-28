@@ -26,16 +26,23 @@
         <div id="paper"></div>
     </div> -->
     <div class="menu hide"></div>
+    <div class="summary hide">
+        <div id="close" onclick="closeSummary()"></div>
+        <div id="summary-content"></div>
+    </div>
     <div class="paper hide">
         <div class="head">
             <div class="back" onclick="showMenu()">&lt;</div>
-            <div class="title"></div>
+            <div class="title" onclick="showSummary()"></div>
         </div>
         <div class="content">
         </div>
     </div>
     <script src="./data.js"></script>
     <script src="./index.js"></script>
+    <script>
+        showMenu();
+    </script>
 </body>
 
 </html>

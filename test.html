@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="inverse" width="200px" height="200px"></canvas>
+    <canvas id="linear" width="200px" height="200px"></canvas>
+    <canvas id="quadratic" width="200px" height="200px"></canvas>
+    <canvas id="polygan" width="200px" height="200px"></canvas>
+    <canvas id="rect" width="200px" height="200px"></canvas>
+
+    <script src="index.js"></script>
+    <script>
+        const inverse = document.getElementById('inverse');
+        const linear = document.getElementById('linear');
+        const quadratic = document.getElementById('quadratic');
+        const polygan = document.getElementById('polygan');
+        const rect = document.getElementById('rect');
+
+        drawInverseProportionalFunction(inverse, 10);
+        drawLinearFunction(linear, 1, 1);
+        drawLinearFunction(linear, -1, -2);
+        drawQuadraticFunction(quadratic, 0.1, 0.2, 0);
+        drawPolygan(polygan, [{
+            x: -30,
+            y: -30
+        }, {
+            x: 50,
+            y: 0
+        }, {
+            x: 0,
+            y: 60
+        }]);
+        drawAxis(rect);
+        drawRect(rect, -88, 88, 120, 100);
+        drawDashLine(rect, -88, 88, 32, -12);
+        drawLine(rect, -88, -12, 32, 88)
+        // console.log(xCoord(linear, 1), yCoord(linear, 1))
+        // console.log(xCoord(rect, 10, 1, 0), yCoord(rect, 10, 1, 199))
+    </script>
+
+</body>
+
+</html>
