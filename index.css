@@ -79,3 +79,9 @@
     width: 100%;
     overflow: auto;
 }
+
+.summary-item {
+    display: flex;
+    overflow: auto;
+    margin: 8px;
+}

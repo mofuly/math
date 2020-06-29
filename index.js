@@ -75,8 +75,16 @@ function showSummary() {
     var index = +text.substring(0, pos - 1);
     if (!papers[index].summary)
         return;
-    console.log(elSummaryContent);
-    katex.render(papers[index].summary, elSummaryContent);
+    var htmls = [];
+    for (var i = 0; i < papers[index].summary.length; i++) {
+        htmls.push("<div class=\"summary-item\">" + (i + 1) + "\u3001<div id=\"summary-item-" + i + "\"></div></div>");
+    }
+    elSummaryContent.innerHTML = htmls.join('');
+    for (var i = 0; i < papers[index].summary.length; i++) {
+        var summary = papers[index].summary[i];
+        var el = document.querySelector("#summary-item-" + i);
+        katex.render(summary, el);
+    }
     elMenu.classList.add('hide');
     elPaper.classList.add('hide');
     elSummary.classList.remove('hide');
@@ -227,6 +235,19 @@ function drawDashLine(canvas, x1, y1, x2, y2, centerX, centerY) {
     ctx === null || ctx === void 0 ? void 0 : ctx.setLineDash([8]);
     ctx === null || ctx === void 0 ? void 0 : ctx.moveTo(xCoord(canvas, x1, scale, centerX), yCoord(canvas, y1, scale, centerY));
     ctx === null || ctx === void 0 ? void 0 : ctx.lineTo(xCoord(canvas, x2, scale, centerX), yCoord(canvas, y2, scale, centerY));
+    ctx === null || ctx === void 0 ? void 0 : ctx.stroke();
+    ctx === null || ctx === void 0 ? void 0 : ctx.closePath();
+    ctx === null || ctx === void 0 ? void 0 : ctx.restore();
+}
+function drawArc(canvas, radius, startAngle, endAngle, x, y) {
+    if (startAngle === void 0) { startAngle = 0; }
+    if (endAngle === void 0) { endAngle = 2 * Math.PI; }
+    if (x === void 0) { x = canvas.width / 2; }
+    if (y === void 0) { y = canvas.height / 2; }
+    var ctx = canvas.getContext('2d');
+    ctx === null || ctx === void 0 ? void 0 : ctx.save();
+    ctx === null || ctx === void 0 ? void 0 : ctx.beginPath();
+    ctx === null || ctx === void 0 ? void 0 : ctx.arc(x, y, radius, startAngle, endAngle);
     ctx === null || ctx === void 0 ? void 0 : ctx.stroke();
     ctx === null || ctx === void 0 ? void 0 : ctx.closePath();
     ctx === null || ctx === void 0 ? void 0 : ctx.restore();
