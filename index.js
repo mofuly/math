@@ -1,35 +1,102 @@
 "use strict";
 function showPaper(paperNo) {
-    var elPaper = document.querySelector('.paper');
-    var elMenu = document.querySelector('.menu');
-    var elContent = document.querySelector('.paper .content');
-    var elTitle = document.querySelector('.title');
-    var elBack = document.querySelector('.back');
-    var elSummary = document.querySelector('.summary');
-    var htmls = [];
-    var questions = papers[paperNo].questions;
-    var answers = papers[paperNo].answers;
+    const elPaper = document.querySelector('.paper');
+    const elMenu = document.querySelector('.menu');
+    const elContent = document.querySelector('.paper .content');
+    const elTitle = document.querySelector('.title');
+    const elBack = document.querySelector('.back');
+    const elSummary = document.querySelector('.summary');
+    const htmls = [];
+    const questions = papers[paperNo].questions;
+    const answers = papers[paperNo].answers;
     if (papers.length <= 1)
         elBack.classList.add('hide');
-    questions.forEach(function (v, i) {
-        var html = "\n            <div class=\"qa\">\n                <div class=\"q\">\n                    <div class=\"key\" data-id=\"#answer-" + i + "\">\n                        " + (i + 1) + "\uD83D\uDD11\n                    </div>\n                    <div class=\"question\">\n                    </div>\n                </div>\n                <div class=\"pictures\"></div>\n                <div id=\"answer-" + i + "\" class=\"answer hide\">\n                </div>\n            </div>";
+    questions.forEach((v, i) => {
+        const html = `
+            <div class="qa">
+                <div class="q">
+                    <div class="key" data-id="#answer-${i}">
+                        ${i + 1}🔑
+                    </div>
+                    <div class="question">
+                    </div>
+                </div>
+                <div class="question-pictures" id="question-pictures-${i}"></div>
+                <div id="answer-${i}" class="answer hide"></div>
+                <div id="answer-pictures-${i}" class="answer-pictures hide"></div>
+            </div>`;
         htmls.push(html);
     });
     elContent.innerHTML = htmls.join('\n');
     elTitle.innerHTML = (paperNo + 1) + '.' + papers[paperNo].title + '(共' + papers[paperNo].questions.length + '题)';
-    var elQuestions = document.querySelectorAll('.question');
-    var elAnswers = document.querySelectorAll('.answer');
-    var elKeys = document.querySelectorAll('.key');
-    for (var i = 0; i < elQuestions.length; i++) {
-        katex.render(questions[i], elQuestions[i]);
-        katex.render(answers[i], elAnswers[i]);
-        elKeys[i].addEventListener('click', function (e) {
-            var target = e.target;
-            var id = target.dataset.id;
-            var elAnswer = document.querySelector(id);
-            if (elAnswer)
+    const elQuestions = document.querySelectorAll('.question');
+    const elAnswers = document.querySelectorAll('.answer');
+    const elKeys = document.querySelectorAll('.key');
+    for (let i = 0; i < elQuestions.length; i++) {
+        // if (questions[i].question.indexOf('\\') !== -1) {
+        katex.render(questions[i].question, elQuestions[i], { strict: false });
+        // } else {
+        //     elQuestions[i].innerHTML = questions[i].question;
+        // }
+        // if (answers[i].answer.indexOf('\\') !== -1) {
+        katex.render(answers[i].answer, elAnswers[i], { strict: false });
+        // } else {
+        //     elAnswers[i].innerHTML = answers[i].answer;
+        // }
+        elKeys[i].addEventListener('click', (e) => {
+            const target = e.target;
+            const id = target.dataset.id;
+            const elAnswer = document.querySelector(id);
+            const elAnswerPictures = document.querySelector('#answer-pictures' + id.replace('#answer', ''));
+            if (elAnswer) {
                 elAnswer.classList.toggle('hide');
+                elAnswerPictures === null || elAnswerPictures === void 0 ? void 0 : elAnswerPictures.classList.toggle('hide');
+            }
         });
+        if (questions[i].images) {
+            let images = questions[i].images;
+            let id = `question-pictures-${i}`;
+            let elImages = document.getElementById(id);
+            let htmls = [];
+            let len = images.length;
+            for (let j = 0; j < len; j++) {
+                let image = images[j];
+                htmls.push(`<div><canvas id="canvas-question-${i}-${j}" width="180px" height="180px">
+                    </canvas><div style="width:180px;text-align:center;font-size:12px;">${image.subtitle}</div></div>`);
+            }
+            elImages.innerHTML = htmls.join('');
+            for (let j = 0; j < len; j++) {
+                let id = `canvas-question-${i}-${j}`;
+                let el = document.getElementById(id);
+                if (el) {
+                    images[j].image.forEach(item => {
+                        eval(item.replace('canvas', 'el'));
+                    });
+                }
+            }
+        }
+        if (answers[i].images) {
+            let images = answers[i].images;
+            let id = `answer-pictures-${i}`;
+            let elImages = document.getElementById(id);
+            let htmls = [];
+            let len = images.length;
+            for (let j = 0; j < len; j++) {
+                let image = images[j];
+                htmls.push(`<div><canvas id="canvas-answer-${i}-${j}" width="180px" height="200px">
+                    </canvas><div style="width:180px;text-align:center;font-size:12px;">${image.subtitle}</div></div>`);
+            }
+            elImages.innerHTML = htmls.join('');
+            for (let j = 0; j < len; j++) {
+                let id = `canvas-answer-${i}-${j}`;
+                let el = document.getElementById(id);
+                if (el) {
+                    images[j].image.forEach(item => {
+                        eval(item.replace('canvas', 'el'));
+                    });
+                }
+            }
+        }
     }
     elPaper.classList.remove('hide');
     elMenu.classList.add('hide');
@@ -42,19 +109,19 @@ function showMenu() {
     }
     if (papers.length < 1)
         return;
-    var elMenu = document.querySelector('.menu');
-    var elPaper = document.querySelector('.paper');
-    var elSummary = document.querySelector('.summary');
-    var htmls = [];
-    for (var i = papers.length - 1; i >= 0; i--) {
-        htmls.push("<div class=\"menu-item\" data-no=\"" + i + "\">" + (papers.length - i) + "--" + papers[i].title + "</div>");
+    const elMenu = document.querySelector('.menu');
+    const elPaper = document.querySelector('.paper');
+    const elSummary = document.querySelector('.summary');
+    const htmls = [];
+    for (let i = 0; i < papers.length; i++) {
+        htmls.push(`<div class="menu-item" data-no="${i}">❓${i + 1}--${papers[i].title}(${papers[i].questions.length}题)</div>`);
     }
     elMenu.innerHTML = htmls.join('');
-    var elMenuItems = document.querySelectorAll('.menu-item');
-    for (var i = 0; i < elMenuItems.length; i++) {
-        elMenuItems[i].addEventListener('click', function (e) {
-            var target = e.target;
-            var no = target.dataset.no;
+    const elMenuItems = document.querySelectorAll('.menu-item');
+    for (let i = 0; i < elMenuItems.length; i++) {
+        elMenuItems[i].addEventListener('click', (e) => {
+            const target = e.target;
+            const no = target.dataset.no;
             showPaper(+no);
         });
     }
@@ -63,44 +130,56 @@ function showMenu() {
     elSummary.classList.add('hide');
 }
 function showSummary() {
-    var elMenu = document.querySelector('.menu');
-    var elPaper = document.querySelector('.paper');
-    var elSummary = document.querySelector('.summary');
-    var elTitle = document.querySelector('.paper .head .title');
-    var text = elTitle.innerText;
-    var pos = text.indexOf('.');
+    const elMenu = document.querySelector('.menu');
+    const elPaper = document.querySelector('.paper');
+    const elSummary = document.querySelector('.summary');
+    const elTitle = document.querySelector('.paper .head .title');
+    const text = elTitle.innerText;
+    const pos = text.indexOf('.');
     if (pos === -1)
         return;
-    var elSummaryContent = document.querySelector('#summary-content');
-    var index = +text.substring(0, pos - 1);
-    if (!papers[index].summary)
+    const elSummaryContent = document.querySelector('#summary-content');
+    const index = +text.substring(0, pos) - 1;
+    // console.log(text, 'pos:', pos, 'index = ', index, text.substring(0, pos))
+    if (papers[index].summary.length < 1) {
+        closeSummary();
         return;
-    var htmls = [];
-    for (var i = 0; i < papers[index].summary.length; i++) {
-        htmls.push("<div class=\"summary-item\">" + (i + 1) + "\u3001<div id=\"summary-item-" + i + "\"></div></div>");
+    }
+    const htmls = [];
+    for (let i = 0; i < papers[index].summary.length; i++) {
+        htmls.push(`<div class="summary-item">${i + 1}、<div id="summary-item-${i}"></div></div>`);
     }
     elSummaryContent.innerHTML = htmls.join('');
-    for (var i = 0; i < papers[index].summary.length; i++) {
-        var summary = papers[index].summary[i];
-        var el = document.querySelector("#summary-item-" + i);
-        katex.render(summary, el);
+    for (let i = 0; i < papers[index].summary.length; i++) {
+        const summary = papers[index].summary[i];
+        const el = document.querySelector(`#summary-item-${i}`);
+        // if (summary.indexOf('\\') >= 0) {
+        katex.render(summary, el, { strict: false });
+        // } else {
+        //     el.innerHTML = summary;
+        //     el.style.fontSize = '1.2em';
+        // }
     }
     elMenu.classList.add('hide');
     elPaper.classList.add('hide');
     elSummary.classList.remove('hide');
 }
 function closeSummary() {
-    var elMenu = document.querySelector('.menu');
-    var elPaper = document.querySelector('.paper');
-    var elSummary = document.querySelector('.summary');
+    const elMenu = document.querySelector('.menu');
+    const elPaper = document.querySelector('.paper');
+    const elSummary = document.querySelector('.summary');
     elMenu.classList.add('hide');
     elPaper.classList.remove('hide');
     elSummary.classList.add('hide');
 }
-function drawAxis(canvas, centerX, centerY) {
-    if (centerX === void 0) { centerX = canvas.width / 2; }
-    if (centerY === void 0) { centerY = canvas.height / 2; }
-    var ctx = canvas.getContext('2d');
+/**
+ * 画坐标轴
+ * @param canvas 画布
+ * @param centerX 原点x
+ * @param centerY 原点y
+ */
+function drawAxis(canvas, centerX = canvas.width / 2, centerY = canvas.height / 2) {
+    const ctx = canvas.getContext('2d');
     ctx === null || ctx === void 0 ? void 0 : ctx.save();
     ctx === null || ctx === void 0 ? void 0 : ctx.beginPath();
     ctx === null || ctx === void 0 ? void 0 : ctx.moveTo(centerX, 0);
@@ -111,30 +190,42 @@ function drawAxis(canvas, centerX, centerY) {
     ctx === null || ctx === void 0 ? void 0 : ctx.closePath();
     ctx === null || ctx === void 0 ? void 0 : ctx.restore();
 }
-function xCoord(canvas, x, scale, centerX) {
-    if (scale === void 0) { scale = 10; }
-    if (centerX === void 0) { centerX = canvas.width / 2; }
+/**
+ *
+ * @param canvas
+ * @param x
+ * @param scale
+ * @param centerX
+ */
+function xCoord(canvas, x, scale = 10, centerX = canvas.width / 2) {
     return x * scale + centerX;
 }
-function yCoord(canvas, y, scale, centerY) {
-    if (scale === void 0) { scale = 10; }
-    if (centerY === void 0) { centerY = canvas.height / 2; }
+function yCoord(canvas, y, scale = 10, centerY = canvas.height / 2) {
     return centerY - y * scale;
 }
-function drawInverseProportionalFunction(canvas, k) {
-    var ctx = canvas.getContext('2d');
+function drawInverseProportionalFunction(canvas, k, partial = 2) {
+    const ctx = canvas.getContext('2d');
+    const scale = 15;
     drawAxis(canvas);
     ctx === null || ctx === void 0 ? void 0 : ctx.save();
     ctx === null || ctx === void 0 ? void 0 : ctx.beginPath();
-    ctx === null || ctx === void 0 ? void 0 : ctx.moveTo(xCoord(canvas, -canvas.width / 2), yCoord(canvas, inverseProportionalFunction(k, -canvas.width / 2)));
-    for (var x = -canvas.width / 2; x < 0; x++) {
-        var y = inverseProportionalFunction(k, x);
-        ctx === null || ctx === void 0 ? void 0 : ctx.lineTo(xCoord(canvas, x), yCoord(canvas, y));
+    if (partial === 2 || partial === 0) {
+        ctx === null || ctx === void 0 ? void 0 : ctx.moveTo(xCoord(canvas, -canvas.width / 2), yCoord(canvas, inverseProportionalFunction(k, -canvas.width / 2)));
+        for (let x = -canvas.width / 2; x < 0; x += 0.1) {
+            let y = inverseProportionalFunction(k, x);
+            ctx === null || ctx === void 0 ? void 0 : ctx.lineTo(xCoord(canvas, x, scale), yCoord(canvas, y, scale));
+        }
     }
-    ctx === null || ctx === void 0 ? void 0 : ctx.moveTo(xCoord(canvas, 1), yCoord(canvas, inverseProportionalFunction(k, 1)));
-    for (var x = 0; x < canvas.width / 2; x++) {
-        var y = inverseProportionalFunction(k, x);
-        ctx === null || ctx === void 0 ? void 0 : ctx.lineTo(xCoord(canvas, x), yCoord(canvas, y));
+    if (partial === 2 || partial === 1) {
+        ctx === null || ctx === void 0 ? void 0 : ctx.moveTo(xCoord(canvas, 0.1, scale), yCoord(canvas, inverseProportionalFunction(k, 0.1), scale));
+        // for (let x = 0.1; x < 1; x += 0.1) {
+        //     let y = inverseProportionalFunction(k, x);
+        //     ctx?.lineTo(xCoord(canvas, x, scale), yCoord(canvas, y, scale));
+        // }
+        for (let x = 0.1; x < canvas.width / 2; x += 0.1) {
+            let y = inverseProportionalFunction(k, x);
+            ctx === null || ctx === void 0 ? void 0 : ctx.lineTo(xCoord(canvas, x, scale), yCoord(canvas, y, scale));
+        }
     }
     ctx === null || ctx === void 0 ? void 0 : ctx.stroke();
     ctx === null || ctx === void 0 ? void 0 : ctx.closePath();
@@ -143,14 +234,12 @@ function drawInverseProportionalFunction(canvas, k) {
         return k / x;
     }
 }
-function drawLinearFunction(canvas, a, b, centerX, centerY) {
-    if (centerX === void 0) { centerX = canvas.width / 2; }
-    if (centerY === void 0) { centerY = canvas.height / 2; }
-    var ctx = canvas.getContext('2d');
-    var scale = 10;
+function drawLinearFunction(canvas, a, b, centerX = canvas.width / 2, centerY = canvas.height / 2) {
+    const ctx = canvas.getContext('2d');
+    const scale = 10;
     drawAxis(canvas);
-    var x1 = xCoord(canvas, -canvas.width / 2, scale, centerX), y1 = yCoord(canvas, linearFunction(a, b, -canvas.width / 2), scale, centerY);
-    var x2 = xCoord(canvas, canvas.width / 2, scale, centerX), y2 = yCoord(canvas, linearFunction(a, b, canvas.width / 2), scale, centerY);
+    const x1 = xCoord(canvas, -canvas.width / 2, scale, centerX), y1 = yCoord(canvas, linearFunction(a, b, -canvas.width / 2), scale, centerY);
+    const x2 = xCoord(canvas, canvas.width / 2, scale, centerX), y2 = yCoord(canvas, linearFunction(a, b, canvas.width / 2), scale, centerY);
     ctx === null || ctx === void 0 ? void 0 : ctx.save();
     ctx === null || ctx === void 0 ? void 0 : ctx.beginPath();
     ctx === null || ctx === void 0 ? void 0 : ctx.moveTo(x1, y1);
@@ -162,17 +251,15 @@ function drawLinearFunction(canvas, a, b, centerX, centerY) {
         return a * x + b;
     }
 }
-function drawQuadraticFunction(canvas, a, b, c, centerX, centerY) {
-    if (centerX === void 0) { centerX = canvas.width / 2; }
-    if (centerY === void 0) { centerY = canvas.height / 2; }
-    var ctx = canvas.getContext('2d');
+function drawQuadraticFunction(canvas, a, b, c, centerX = canvas.width / 2, centerY = canvas.height / 2) {
+    const ctx = canvas.getContext('2d');
     drawAxis(canvas, centerX, centerY);
-    var scale = 2;
+    const scale = 2;
     ctx === null || ctx === void 0 ? void 0 : ctx.save();
     ctx === null || ctx === void 0 ? void 0 : ctx.beginPath();
     ctx === null || ctx === void 0 ? void 0 : ctx.moveTo(xCoord(canvas, -canvas.width / 2, scale, centerX), yCoord(canvas, quadracticFunction(a, b, c, -canvas.width / 2), scale, centerY));
-    for (var x = -canvas.width / 2; x < canvas.width / 2; x++) {
-        var y = quadracticFunction(a, b, c, x);
+    for (let x = -canvas.width / 2; x < canvas.width / 2; x++) {
+        let y = quadracticFunction(a, b, c, x);
         ctx === null || ctx === void 0 ? void 0 : ctx.lineTo(xCoord(canvas, x, scale, centerX), yCoord(canvas, y, scale, centerY));
     }
     ctx === null || ctx === void 0 ? void 0 : ctx.stroke();
@@ -182,19 +269,17 @@ function drawQuadraticFunction(canvas, a, b, c, centerX, centerY) {
         return a * x * x + b * x + c;
     }
 }
-function drawPolygan(canvas, coords, centerX, centerY) {
-    if (centerX === void 0) { centerX = canvas.width / 2; }
-    if (centerY === void 0) { centerY = canvas.height / 2; }
+function drawPolygan(canvas, coords, centerX = canvas.width / 2, centerY = canvas.height / 2) {
     if (coords.length < 3)
         return;
-    var scale = 1;
-    var ctx = canvas.getContext('2d');
+    const scale = 1;
+    const ctx = canvas.getContext('2d');
     ctx === null || ctx === void 0 ? void 0 : ctx.save();
     ctx === null || ctx === void 0 ? void 0 : ctx.beginPath();
     ctx === null || ctx === void 0 ? void 0 : ctx.moveTo(xCoord(canvas, coords[0].x, scale, centerX), yCoord(canvas, coords[0].y, scale, centerY));
-    for (var i = 1; i < coords.length; i++) {
-        var x = xCoord(canvas, coords[i].x, scale, centerX);
-        var y = yCoord(canvas, coords[i].y, scale, centerY);
+    for (let i = 1; i < coords.length; i++) {
+        let x = xCoord(canvas, coords[i].x, scale, centerX);
+        let y = yCoord(canvas, coords[i].y, scale, centerY);
         ctx === null || ctx === void 0 ? void 0 : ctx.lineTo(x, y);
     }
     ctx === null || ctx === void 0 ? void 0 : ctx.lineTo(xCoord(canvas, coords[0].x, scale, centerX), yCoord(canvas, coords[0].y, scale, centerY));
@@ -202,21 +287,17 @@ function drawPolygan(canvas, coords, centerX, centerY) {
     ctx === null || ctx === void 0 ? void 0 : ctx.closePath();
     ctx === null || ctx === void 0 ? void 0 : ctx.restore();
 }
-function drawRect(canvas, x, y, w, h, centerX, centerY) {
-    if (centerX === void 0) { centerX = canvas.width / 2; }
-    if (centerY === void 0) { centerY = canvas.height / 2; }
-    var ctx = canvas.getContext('2d');
-    var scale = 1;
+function drawRect(canvas, x, y, w, h, centerX = canvas.width / 2, centerY = canvas.height / 2) {
+    const ctx = canvas.getContext('2d');
+    const scale = 1;
     ctx === null || ctx === void 0 ? void 0 : ctx.save();
     ctx === null || ctx === void 0 ? void 0 : ctx.strokeRect(xCoord(canvas, x, scale, centerX), yCoord(canvas, y, scale, centerY), w, h);
     ctx === null || ctx === void 0 ? void 0 : ctx.stroke();
     ctx === null || ctx === void 0 ? void 0 : ctx.restore();
 }
-function drawLine(canvas, x1, y1, x2, y2, centerX, centerY) {
-    if (centerX === void 0) { centerX = canvas.width / 2; }
-    if (centerY === void 0) { centerY = canvas.height / 2; }
-    var ctx = canvas.getContext('2d');
-    var scale = 1;
+function drawLine(canvas, x1, y1, x2, y2, centerX = canvas.width / 2, centerY = canvas.height / 2) {
+    const ctx = canvas.getContext('2d');
+    const scale = 1;
     ctx === null || ctx === void 0 ? void 0 : ctx.save();
     ctx === null || ctx === void 0 ? void 0 : ctx.beginPath();
     ctx === null || ctx === void 0 ? void 0 : ctx.moveTo(xCoord(canvas, x1, scale, centerX), yCoord(canvas, y1, scale, centerY));
@@ -225,11 +306,9 @@ function drawLine(canvas, x1, y1, x2, y2, centerX, centerY) {
     ctx === null || ctx === void 0 ? void 0 : ctx.closePath();
     ctx === null || ctx === void 0 ? void 0 : ctx.restore();
 }
-function drawDashLine(canvas, x1, y1, x2, y2, centerX, centerY) {
-    if (centerX === void 0) { centerX = canvas.width / 2; }
-    if (centerY === void 0) { centerY = canvas.height / 2; }
-    var ctx = canvas.getContext('2d');
-    var scale = 1;
+function drawDashLine(canvas, x1, y1, x2, y2, centerX = canvas.width / 2, centerY = canvas.height / 2) {
+    const ctx = canvas.getContext('2d');
+    const scale = 1;
     ctx === null || ctx === void 0 ? void 0 : ctx.save();
     ctx === null || ctx === void 0 ? void 0 : ctx.beginPath();
     ctx === null || ctx === void 0 ? void 0 : ctx.setLineDash([8]);
@@ -239,16 +318,21 @@ function drawDashLine(canvas, x1, y1, x2, y2, centerX, centerY) {
     ctx === null || ctx === void 0 ? void 0 : ctx.closePath();
     ctx === null || ctx === void 0 ? void 0 : ctx.restore();
 }
-function drawArc(canvas, radius, startAngle, endAngle, x, y) {
-    if (startAngle === void 0) { startAngle = 0; }
-    if (endAngle === void 0) { endAngle = 2 * Math.PI; }
-    if (x === void 0) { x = canvas.width / 2; }
-    if (y === void 0) { y = canvas.height / 2; }
-    var ctx = canvas.getContext('2d');
+function drawArc(canvas, radius, startAngle = 0, endAngle = 2 * Math.PI, x = canvas.width / 2, y = canvas.height / 2) {
+    const ctx = canvas.getContext('2d');
     ctx === null || ctx === void 0 ? void 0 : ctx.save();
     ctx === null || ctx === void 0 ? void 0 : ctx.beginPath();
     ctx === null || ctx === void 0 ? void 0 : ctx.arc(x, y, radius, startAngle, endAngle);
     ctx === null || ctx === void 0 ? void 0 : ctx.stroke();
     ctx === null || ctx === void 0 ? void 0 : ctx.closePath();
     ctx === null || ctx === void 0 ? void 0 : ctx.restore();
+}
+function drawText(canvas, text, x, y, fontSize = 12, centerX = canvas.width / 2, centerY = canvas.height / 2) {
+    const ctx = canvas.getContext('2d');
+    ctx.save();
+    ctx.font = fontSize + 'px';
+    x = xCoord(canvas, x, 1, centerX);
+    y = yCoord(canvas, y, 1, centerY);
+    ctx.fillText(text, x, y);
+    ctx.restore();
 }

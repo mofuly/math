@@ -13,6 +13,7 @@
     <canvas id="quadratic" width="200px" height="200px"></canvas>
     <canvas id="polygan" width="200px" height="200px"></canvas>
     <canvas id="rect" width="200px" height="200px"></canvas>
+    <canvas id="text" width="200px" height="200px"></canvas>
 
     <script src="index.js"></script>
     <script>
@@ -21,6 +22,7 @@
         const quadratic = document.getElementById('quadratic');
         const polygan = document.getElementById('polygan');
         const rect = document.getElementById('rect');
+        const text = document.getElementById('text');
 
         drawInverseProportionalFunction(inverse, 10);
         drawLinearFunction(linear, 1, 1);
@@ -41,6 +43,11 @@
         drawDashLine(rect, -88, 88, 32, -12);
         drawLine(rect, -88, -12, 32, 88)
         drawArc(linear, 30);
+        drawText(text, 'hello,world', 20, 20);
+        drawText(text, '负的', 20, -80);
+        eval('drawText(text,"eval",20,80)');
+        drawAxis(text, 50, 150);
+        drawText(text, 'test', 20, 150, 16, 0, 199);
         // console.log(xCoord(linear, 1), yCoord(linear, 1))
         // console.log(xCoord(rect, 10, 1, 0), yCoord(rect, 10, 1, 199))
     </script>

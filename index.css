@@ -62,6 +62,7 @@
     flex-grow: 1;
 }
 
+
 .menu div {
     margin: 4px 24px;
     font-size: 24px;
@@ -82,6 +83,12 @@
 
 .summary-item {
     display: flex;
-    overflow: auto;
+    /* word-wrap: break-word; */
     margin: 8px;
+}
+
+.question-pictures,
+.answer-pictures {
+    display: flex;
+    flex-wrap: wrap;
 }
