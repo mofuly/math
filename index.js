@@ -61,8 +61,8 @@ function showPaper(paperNo) {
             let len = images.length;
             for (let j = 0; j < len; j++) {
                 let image = images[j];
-                htmls.push(`<div><canvas id="canvas-question-${i}-${j}" width="180px" height="180px">
-                    </canvas><div style="width:180px;text-align:center;font-size:12px;">${image.subtitle}</div></div>`);
+                htmls.push(`<div><canvas id="canvas-question-${i}-${j}" width="300px" height="180px">
+                    </canvas><div style="width:300px;text-align:center;font-size:12px;">${image.subtitle}</div></div>`);
             }
             elImages.innerHTML = htmls.join('');
             for (let j = 0; j < len; j++) {
@@ -305,6 +305,36 @@ function drawLine(canvas, x1, y1, x2, y2, centerX = canvas.width / 2, centerY = 
     ctx === null || ctx === void 0 ? void 0 : ctx.stroke();
     ctx === null || ctx === void 0 ? void 0 : ctx.closePath();
     ctx === null || ctx === void 0 ? void 0 : ctx.restore();
+    console.log(xCoord(canvas, x1, scale, centerX), yCoord(canvas, y1, scale, centerY));
+    console.log(xCoord(canvas, x2, scale, centerX), yCoord(canvas, y2, scale, centerY));
+}
+function line(canvas, x1, y1, x2, y2) {
+    const ctx = canvas.getContext('2d');
+    ctx === null || ctx === void 0 ? void 0 : ctx.save();
+    ctx === null || ctx === void 0 ? void 0 : ctx.beginPath();
+    ctx === null || ctx === void 0 ? void 0 : ctx.moveTo(x1, y1);
+    ctx === null || ctx === void 0 ? void 0 : ctx.lineTo(x2, y2);
+    ctx === null || ctx === void 0 ? void 0 : ctx.stroke();
+    ctx === null || ctx === void 0 ? void 0 : ctx.closePath();
+    ctx === null || ctx === void 0 ? void 0 : ctx.restore();
+}
+function dashLine(canvas, x1, y1, x2, y2) {
+    const ctx = canvas.getContext('2d');
+    ctx === null || ctx === void 0 ? void 0 : ctx.save();
+    ctx === null || ctx === void 0 ? void 0 : ctx.beginPath();
+    ctx === null || ctx === void 0 ? void 0 : ctx.setLineDash([8]);
+    ctx === null || ctx === void 0 ? void 0 : ctx.moveTo(x1, y1);
+    ctx === null || ctx === void 0 ? void 0 : ctx.lineTo(x2, y2);
+    ctx === null || ctx === void 0 ? void 0 : ctx.stroke();
+    ctx === null || ctx === void 0 ? void 0 : ctx.closePath();
+    ctx === null || ctx === void 0 ? void 0 : ctx.restore();
+}
+function text(canvas, text, x, y, fontSize = 12) {
+    const ctx = canvas.getContext('2d');
+    ctx.save();
+    ctx.font = fontSize + 'px';
+    ctx.fillText(text, x, y);
+    ctx.restore();
 }
 function drawDashLine(canvas, x1, y1, x2, y2, centerX = canvas.width / 2, centerY = canvas.height / 2) {
     const ctx = canvas.getContext('2d');

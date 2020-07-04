@@ -92,3 +92,8 @@
     display: flex;
     flex-wrap: wrap;
 }
+
+.answer {
+    margin: 8px;
+    border: 1px solid red;
+}
