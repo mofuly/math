@@ -282,11 +282,100 @@ var papers = [
         questions: [
             {
                 question: String.raw(__makeTemplateObject(["mathrm{\u5DF2\u77E5\u629B\u7269\u7EBF}y=x^2-2mx-4(m>0)\\mathrm{\u7684\u9876\u70B9}Mmathrm{\u5173\u4E8E\u5750\u6807\u539F\u70B9}Omathrm{\u7684\u5BF9\u79F0\u70B9}N.\\mathrm{\u82E5\u70B9}Nmathrm{\u5728\u8FD9\u6761\u629B\u7269\u7EBF\u4E0A},\u6C42Mmathrm{\u7684\u5750\u6807}\u3002"], ["\\mathrm{\u5DF2\u77E5\u629B\u7269\u7EBF}y=x^2-2mx-4(m>0)\\\\\\mathrm{\u7684\u9876\u70B9}M\\mathrm{\u5173\u4E8E\u5750\u6807\u539F\u70B9}O\\mathrm{\u7684\u5BF9\u79F0\u70B9}N.\\\\\\mathrm{\u82E5\u70B9}N\\mathrm{\u5728\u8FD9\u6761\u629B\u7269\u7EBF\u4E0A},\u6C42M\\mathrm{\u7684\u5750\u6807}\u3002"])),
+            }, {
+                question: String.raw(__makeTemplateObject(["mathrm{\u5728\u5E73\u9762\u76F4\u89D2\u5750\u6807\u7CFB}xOy\u4E2D\uFF0Cmathrm{\u4E8C\u6B21}\\mathrm{\u51FD\u6570}y=ax^2+bx+cmathrm{\u7684\u56FE\u50CF\u5982\u56FE}\\mathrm{\u6240\u793A},mathrm{\u4E0B\u5217\u8BF4\u6CD5\u6B63\u786E\u7684\u662F}(;;;)\\A.abc<0,b^2-4ac>0\\B.abc>0,b^2-4ac>0\\C.abc<0,b^2-4ac<0\\D.abc>0,b^2-4ac<0\\"], ["\\mathrm{\u5728\u5E73\u9762\u76F4\u89D2\u5750\u6807\u7CFB}xOy\u4E2D\uFF0C\\mathrm{\u4E8C\u6B21}\\\\\\mathrm{\u51FD\u6570}y=ax^2+bx+c\\mathrm{\u7684\u56FE\u50CF\u5982\u56FE}\\\\\\mathrm{\u6240\u793A},\\mathrm{\u4E0B\u5217\u8BF4\u6CD5\u6B63\u786E\u7684\u662F}(\\;\\;\\;)\\\\A.abc<0,b^2-4ac>0\\\\B.abc>0,b^2-4ac>0\\\\C.abc<0,b^2-4ac<0\\\\D.abc>0,b^2-4ac<0\\\\"])),
+                images: [{
+                        subtitle: '', image: [
+                            "axis(canvas, 100, 100, 0);",
+                            "axisName(canvas, 100, 100);",
+                            "drawQuadraticFunction(canvas, 0.1, - 3, -10, 100, 100);",
+                            "dashLine(canvas, 130, 180, 130, 0);"
+                        ]
+                    }]
             }
         ],
         answers: [
             {
                 answer: String.raw(__makeTemplateObject(["\u89E3:;y=x^2-2mx-4\\={(x-m)}^2-m^2-4\\mathrm{\u5219\u9876\u70B9}Mmathrm{\u7684\u5750\u6807\u4E3A}(m,-m^2-4)\\Nmathrm{\u7684\u5750\u6807\u4E3A}(-m,m^2+4)\\mathrm{\u56E0\u4E3A}Nmathrm{\u5728\u629B\u7269\u7EBF\u4E0A}\\mathrm{\u6240\u4EE5};m^2+4=m^2+2m-4\\mathrm{\u6240\u4EE5}m^2=4\\mathrm{\u53C8\u56E0\u4E3A}m>0;mathrm{\u6240\u4EE5};m=2\\mathrm{\u6240\u4EE5}M(2-8)"], ["\u89E3:\\;y=x^2-2mx-4\\\\={(x-m)}^2-m^2-4\\\\\\mathrm{\u5219\u9876\u70B9}M\\mathrm{\u7684\u5750\u6807\u4E3A}(m,-m^2-4)\\\\N\\mathrm{\u7684\u5750\u6807\u4E3A}(-m,m^2+4)\\\\\\mathrm{\u56E0\u4E3A}N\\mathrm{\u5728\u629B\u7269\u7EBF\u4E0A}\\\\\\mathrm{\u6240\u4EE5}\\;m^2+4=m^2+2m-4\\\\\\mathrm{\u6240\u4EE5}m^2=4\\\\\\mathrm{\u53C8\u56E0\u4E3A}m>0\\;\\mathrm{\u6240\u4EE5}\\;m=2\\\\\\mathrm{\u6240\u4EE5}M(2-8)"])),
+            }, {
+                answer: String.raw(__makeTemplateObject(["B\\mathrm{\u56E0\u4E3A\u5F00\u53E3\u5411\u4E0A},mathrm{\u6240\u4EE5}a>0\\mathrm{\u56E0\u4E3A\u5BF9\u79F0\u8F74\u5728}ymathrm{\u8F74\u53F3\u4FA7},mathrm{\u6240\u4EE5}\\-\frac b{2a}>0,mathrm{\u6240\u4EE5}b<0\\mathrm{\u56E0\u4E3A\u4E0E}ymathrm{\u8F74\u4EA4\u70B9\u5728}xmathrm{\u8F74\u4E0B\u65B9}\uFF0C\\mathrm{\u6240\u4EE5}c<0\uFF0Cmathrm{\u6240\u4EE5}abc>0\\mathrm{\u56E0\u4E3A\u4E0E}xmathrm{\u8F74\u6709\u4E24\u4E2A\u4EA4\u70B9}\uFF0C\\mathrm{\u6240\u4EE5}b^2-4ac>0\\"], ["B\\\\\\mathrm{\u56E0\u4E3A\u5F00\u53E3\u5411\u4E0A},\\mathrm{\u6240\u4EE5}a>0\\\\\\mathrm{\u56E0\u4E3A\u5BF9\u79F0\u8F74\u5728}y\\mathrm{\u8F74\u53F3\u4FA7},\\mathrm{\u6240\u4EE5}\\\\-\\frac b{2a}>0,\\mathrm{\u6240\u4EE5}b<0\\\\\\mathrm{\u56E0\u4E3A\u4E0E}y\\mathrm{\u8F74\u4EA4\u70B9\u5728}x\\mathrm{\u8F74\u4E0B\u65B9}\uFF0C\\\\\\mathrm{\u6240\u4EE5}c<0\uFF0C\\mathrm{\u6240\u4EE5}abc>0\\\\\\mathrm{\u56E0\u4E3A\u4E0E}x\\mathrm{\u8F74\u6709\u4E24\u4E2A\u4EA4\u70B9}\uFF0C\\\\\\mathrm{\u6240\u4EE5}b^2-4ac>0\\\\"]))
+            }
+        ]
+    },
+    {
+        title: '统计',
+        summary: [],
+        questions: [
+            {
+                question: String.raw(__makeTemplateObject(["mathrm{\u5982\u56FE}\uFF0Cmathrm{\u6C42\u4E2D\u4F4D\u6570\u548C\u4F17\u6570}\\"], ["\\mathrm{\u5982\u56FE}\uFF0C\\mathrm{\u6C42\u4E2D\u4F4D\u6570\u548C\u4F17\u6570}\\\\"])),
+                images: [{
+                        subtitle: '', image: [
+                            "axis(canvas, 30, 150, 0);",
+                            "axisName(canvas, 30, 150);",
+                            "dashLine(canvas, 30, 120, 280, 120);",
+                            "dashLine(canvas, 30, 90, 280, 90);",
+                            "dashLine(canvas, 30, 60, 280, 60);",
+                            "dashLine(canvas, 30, 30, 280, 30);",
+                            "dashLine(canvas, 280, 150, 280, 30);",
+                            "fillRect(canvas, 50, 60, 30, 90);",
+                            "fillRect(canvas, 100, 90, 30, 60);",
+                            "fillRect(canvas, 150, 75, 30, 75);",
+                            "fillRect(canvas, 200, 30, 30, 120);",
+                            "fillRect(canvas, 250, 60, 30, 90);",
+                            "text(canvas, '15', 58, 55);",
+                            "text(canvas, '10', 108, 85);",
+                            "text(canvas, '13', 158, 70);",
+                            "text(canvas, '20', 208, 25);",
+                            "text(canvas, '15', 258, 55);"
+                        ]
+                    }]
+            }, {
+                question: String.raw(__makeTemplateObject(["mathrm{\u5982\u56FE}\uFF0Cmathrm{\u5224\u65AD\u9519\u8BEF\u7684\u662F}(;;)\\A.2010mathrm{\u5E74\u81F3}2014mathrm{\u5E74\u95F4\u5DE5\u4E1A\u751F\u4EA7\u603B\u503C}\\mathrm{\u9010\u5E74\u589E\u52A0}\\B.2014mathrm{\u5E74\u7684\u5DE5\u4E1A\u751F\u4EA7\u603B\u503C\u6BD4\u524D\u4E00\u5E74}\\mathrm{\u589E\u52A0\u4E86}40mathrm{\u4EBF\u5143}\\C.2012mathrm{\u5E74\u4E0E}2013mathrm{\u5E74\u6BCF\u4E00\u5E74\u4E0E\u524D\u4E00\u5E74}\\\u6BD4\uFF0Cmathrm{\u5176\u589E\u957F\u989D\u76F8\u540C}\\D.\u4ECE2011mathrm{\u5E74\u81F3}2014\u5E74\uFF0Cmathrm{\u6BCF\u4E00\u5E74\u4E0E\u524D}\\mathrm{\u4E00\u5E74\u6BD4}\uFF0C2014mathrm{\u5E74\u7684\u589E\u957F\u7387\u6700\u5927}\\"], ["\\mathrm{\u5982\u56FE}\uFF0C\\mathrm{\u5224\u65AD\u9519\u8BEF\u7684\u662F}(\\;\\;)\\\\A.2010\\mathrm{\u5E74\u81F3}2014\\mathrm{\u5E74\u95F4\u5DE5\u4E1A\u751F\u4EA7\u603B\u503C}\\\\\\mathrm{\u9010\u5E74\u589E\u52A0}\\\\B.2014\\mathrm{\u5E74\u7684\u5DE5\u4E1A\u751F\u4EA7\u603B\u503C\u6BD4\u524D\u4E00\u5E74}\\\\\\mathrm{\u589E\u52A0\u4E86}40\\mathrm{\u4EBF\u5143}\\\\C.2012\\mathrm{\u5E74\u4E0E}2013\\mathrm{\u5E74\u6BCF\u4E00\u5E74\u4E0E\u524D\u4E00\u5E74}\\\\\u6BD4\uFF0C\\mathrm{\u5176\u589E\u957F\u989D\u76F8\u540C}\\\\D.\u4ECE2011\\mathrm{\u5E74\u81F3}2014\u5E74\uFF0C\\mathrm{\u6BCF\u4E00\u5E74\u4E0E\u524D}\\\\\\mathrm{\u4E00\u5E74\u6BD4}\uFF0C2014\\mathrm{\u5E74\u7684\u589E\u957F\u7387\u6700\u5927}\\\\"])),
+                images: [{
+                        subtitle: '',
+                        image: ["grid(canvas, 30, 50, 6, 6, 20, 50);",
+                            "line(canvas, 30, 150, 300, 150);",
+                            "line(canvas, 30, 150, 30, 10);",
+                            "line(canvas, 30, 140, 80, 130);",
+                            "line(canvas, 80, 130, 180, 90);",
+                            "line(canvas, 180, 90, 230, 50);",
+                            "text(canvas, '2010', 20, 160);",
+                            "text(canvas, '2011', 70, 160);",
+                            "text(canvas, '2012', 120, 160);",
+                            "text(canvas, '2013', 170, 160);",
+                            "text(canvas, '2014', 220, 160);",
+                            "text(canvas, '20', 10, 135);",
+                            "text(canvas, '40', 10, 115);",
+                            "text(canvas, '60', 10, 95);",
+                            "text(canvas, '80', 10, 75);",
+                            "text(canvas, '100', 10, 55);",
+                            "text(canvas, '\u5DE5\u4E1A\u751F\u4EA7\u603B\u503C/\u4EBF\u5143', 35, 20);",
+                            "text(canvas, '\u5E74\u4EFD/\u5E74', 260, 160);"]
+                    }]
+            }
+        ],
+        answers: [
+            {
+                answer: String.raw(__makeTemplateObject(["mathrm{\u89E3:\u4E2D\u4F4D\u6570}=15,mathrm{\u4F17\u6570}=15\\"], ["\\mathrm{\u89E3:\u4E2D\u4F4D\u6570}=15,\\mathrm{\u4F17\u6570}=15\\\\"]))
+            }, {
+                answer: String.raw(__makeTemplateObject(["D;2012mathrm{\u5E74\u6BD4}2011mathrm{\u5E74\u589E\u957F\u4E86}\\40-20=20mathrm{\u4EBF\u5143},mathrm{\u589E\u957F\u7387\u4E3A}100%\uFF1B\\2013mathrm{\u5E74\u6BD4}2012mathrm{\u5E74\u589E\u957F\u4E86}60-40=\\20mathrm{\u4EBF\u5143}\uFF0Cmathrm{\u589E\u957F\u7387\u4E3A}50%\uFF1B\\2014mathrm{\u5E74\u6BD4}2013mathrm{\u5E74\u589E\u957F\u4E86}100-60\\=40mathrm{\u4EBF\u5143}\uFF0Cmathrm{\u589E\u957F\u7387\u4E3A}67%\uFF0Cmathrm{\u6545\u4ECE}\\2011mathrm{\u5E74\u81F3}2014\u5E74\uFF0Cmathrm{\u6BCF\u4E00\u5E74\u4E0E\u524D}\\mathrm{\u4E00\u5E74\u6BD4}\uFF0C2012mathrm{\u5E74\u7684\u589E\u957F\u7387\u6700\u5927}\u3002"], ["D\\;2012\\mathrm{\u5E74\u6BD4}2011\\mathrm{\u5E74\u589E\u957F\u4E86}\\\\40-20=20\\mathrm{\u4EBF\u5143},\\mathrm{\u589E\u957F\u7387\u4E3A}100\\%\uFF1B\\\\2013\\mathrm{\u5E74\u6BD4}2012\\mathrm{\u5E74\u589E\u957F\u4E86}60-40=\\\\20\\mathrm{\u4EBF\u5143}\uFF0C\\mathrm{\u589E\u957F\u7387\u4E3A}50\\%\uFF1B\\\\2014\\mathrm{\u5E74\u6BD4}2013\\mathrm{\u5E74\u589E\u957F\u4E86}100-60\\\\=40\\mathrm{\u4EBF\u5143}\uFF0C\\mathrm{\u589E\u957F\u7387\u4E3A}67\\%\uFF0C\\mathrm{\u6545\u4ECE}\\\\2011\\mathrm{\u5E74\u81F3}2014\u5E74\uFF0C\\mathrm{\u6BCF\u4E00\u5E74\u4E0E\u524D}\\\\\\mathrm{\u4E00\u5E74\u6BD4}\uFF0C2012\\mathrm{\u5E74\u7684\u589E\u957F\u7387\u6700\u5927}\u3002"]))
+            }
+        ]
+    }, {
+        title: '概率',
+        summary: [],
+        questions: [
+            {
+                question: String.raw(__makeTemplateObject(["mathrm{\u4E00\u4E2A\u7BB1\u5B50\u88C5\u6709\u9664\u989C\u8272\u5916\u90FD\u76F8\u540C\u7684}2\u4E2A\\mathrm{\u767D\u7403}\uFF0C2mathrm{\u4E2A\u9EC4\u7403}\uFF0C1mathrm{\u4E2A\u7EA2\u7403}\u3002mathrm{\u73B0\u6DFB\u52A0}\\mathrm{\u540C\u79CD\u578B\u53F7\u7684}1mathrm{\u4E2A\u7403}\uFF0Cmathrm{\u4F7F\u5F97\u4ECE\u4E2D\u968F\u673A\u62BD}\\\u53D61mathrm{\u4E2A\u7403}\uFF0Cmathrm{\u5219\u4E09\u79CD\u989C\u8272\u7684\u7403\u88AB\u62BD\u5230\u7684}\\mathrm{\u6982\u7387\u90FD\u662F}\frac13\uFF0Cmathrm{\u90A3\u4E48\u6DFB\u52A0\u7684\u662F\u4EC0\u4E48}\\mathrm{\u989C\u8272\u7684\u7403}\uFF1F"], ["\\mathrm{\u4E00\u4E2A\u7BB1\u5B50\u88C5\u6709\u9664\u989C\u8272\u5916\u90FD\u76F8\u540C\u7684}2\u4E2A\\\\\\mathrm{\u767D\u7403}\uFF0C2\\mathrm{\u4E2A\u9EC4\u7403}\uFF0C1\\mathrm{\u4E2A\u7EA2\u7403}\u3002\\mathrm{\u73B0\u6DFB\u52A0}\\\\\\mathrm{\u540C\u79CD\u578B\u53F7\u7684}1\\mathrm{\u4E2A\u7403}\uFF0C\\mathrm{\u4F7F\u5F97\u4ECE\u4E2D\u968F\u673A\u62BD}\\\\\u53D61\\mathrm{\u4E2A\u7403}\uFF0C\\mathrm{\u5219\u4E09\u79CD\u989C\u8272\u7684\u7403\u88AB\u62BD\u5230\u7684}\\\\\\mathrm{\u6982\u7387\u90FD\u662F}\\frac13\uFF0C\\mathrm{\u90A3\u4E48\u6DFB\u52A0\u7684\u662F\u4EC0\u4E48}\\\\\\mathrm{\u989C\u8272\u7684\u7403}\uFF1F"])),
+            }, {
+                question: String.raw(__makeTemplateObject(["mathrm{\u4E00\u4E2A\u4E0D\u900F\u660E\u7684\u888B\u4E2D\u6709\u56DB\u5F20\u5B8C\u5168\u76F8\u540C}\\mathrm{\u7684\u5361\u7247}\uFF0Cmathrm{\u628A\u5B83\u4EEC\u5206\u522B\u6807\u4E0A\u6570\u5B57}1,2,\\3,4.mathrm{\u968F\u673A\u62BD\u53D6\u4E00\u5F20}\uFF0Cmathrm{\u7136\u540E\u653E\u56DE}\uFF0C\u518D\\mathrm{\u968F\u673A\u62BD\u53D6\u4E00\u5F20}\uFF0Cmathrm{\u5219\u4E24\u6B21\u62BD\u53D6\u7684\u5361\u7247}\\mathrm{\u4E0A\u6570\u5B57\u4E4B\u79EF\u4E3A\u5076\u6570\u7684\u6982\u7387\u662F\u591A\u5C11}\uFF1F"], ["\\mathrm{\u4E00\u4E2A\u4E0D\u900F\u660E\u7684\u888B\u4E2D\u6709\u56DB\u5F20\u5B8C\u5168\u76F8\u540C}\\\\\\mathrm{\u7684\u5361\u7247}\uFF0C\\mathrm{\u628A\u5B83\u4EEC\u5206\u522B\u6807\u4E0A\u6570\u5B57}1,2,\\\\3,4.\\mathrm{\u968F\u673A\u62BD\u53D6\u4E00\u5F20}\uFF0C\\mathrm{\u7136\u540E\u653E\u56DE}\uFF0C\u518D\\\\\\mathrm{\u968F\u673A\u62BD\u53D6\u4E00\u5F20}\uFF0C\\mathrm{\u5219\u4E24\u6B21\u62BD\u53D6\u7684\u5361\u7247}\\\\\\mathrm{\u4E0A\u6570\u5B57\u4E4B\u79EF\u4E3A\u5076\u6570\u7684\u6982\u7387\u662F\u591A\u5C11}\uFF1F"]))
+            }
+        ],
+        answers: [
+            {
+                answer: String.raw(__makeTemplateObject(["mathrm{\u7EA2\u7403}\u3002mathrm{\u518D\u6DFB\u52A0}1mathrm{\u4E2A\u7403}\uFF0Cmathrm{\u5219\u7BB1\u5B50\u91CC\u5171\u6709}\\6mathrm{\u4E2A\u7403}\uFF0Cmathrm{\u56E0\u4E3A\u4ECE\u4E2D\u968F\u673A\u62BD\u53D6}1mathrm{\u4E2A\u7403}\uFF0C\u4E09\\mathrm{\u79CD\u989C\u8272\u7684\u7403\u88AB\u62BD\u5230\u7684\u6982\u7387\u90FD\u662F}\frac13\uFF0Cmathrm{\u6240\u4EE5}\\mathrm{\u6BCF\u79CD\u989C\u8272\u7684\u7403\u90FD\u662F}2\u4E2A\uFF0Cmathrm{\u6545\u6DFB\u52A0\u7684\u662F\u7EA2\u7403}\u3002"], ["\\mathrm{\u7EA2\u7403}\u3002\\mathrm{\u518D\u6DFB\u52A0}1\\mathrm{\u4E2A\u7403}\uFF0C\\mathrm{\u5219\u7BB1\u5B50\u91CC\u5171\u6709}\\\\6\\mathrm{\u4E2A\u7403}\uFF0C\\mathrm{\u56E0\u4E3A\u4ECE\u4E2D\u968F\u673A\u62BD\u53D6}1\\mathrm{\u4E2A\u7403}\uFF0C\u4E09\\\\\\mathrm{\u79CD\u989C\u8272\u7684\u7403\u88AB\u62BD\u5230\u7684\u6982\u7387\u90FD\u662F}\\frac13\uFF0C\\mathrm{\u6240\u4EE5}\\\\\\mathrm{\u6BCF\u79CD\u989C\u8272\u7684\u7403\u90FD\u662F}2\u4E2A\uFF0C\\mathrm{\u6545\u6DFB\u52A0\u7684\u662F\u7EA2\u7403}\u3002"])),
+            }, {
+                answer: String.raw(__makeTemplateObject(["\frac34"], ["\\frac34"]))
             }
         ]
     }

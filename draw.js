@@ -25,17 +25,17 @@ var canvas = document.getElementById('canvas');
 // `text(canvas, '50`, 245, 170)`,
 // `text(canvas, 't/min`, 275, 170)'
 // polygan(canvas, [[10, 180], [160, 180], [10, 10]]);
-axis(canvas, 60, 130, 0);
-axisName(canvas, 60, 130);
-inverse(canvas, 60, 130, 2, 1);
-linear(canvas, 60, 130, 1, -1);
-line(canvas, 60, 70, 90, 130);
-line(canvas, 60, 70, 120, 100);
-text(canvas, 'C', 50, 75);
-text(canvas, 'B', 90, 140);
-text(canvas, 'A', 125, 100);
-dashLine(canvas, 60, 100, 120, 100);
-text(canvas, 'D', 50, 105);
+// axis(canvas, 60, 130, 0);
+// axisName(canvas, 60, 130);
+// inverse(canvas, 60, 130, 2, 1);
+// linear(canvas, 60, 130, 1, -1);
+// line(canvas, 60, 70, 90, 130);
+// line(canvas, 60, 70, 120, 100)
+// text(canvas, 'C', 50, 75);
+// text(canvas, 'B', 90, 140);
+// text(canvas, 'A', 125, 100);
+// dashLine(canvas, 60, 100, 120, 100);
+// text(canvas, 'D', 50, 105);
 // axis(canvas, 100, 170, 0);
 // axisName(canvas, 100, 150, 't/h', 'S/平方米');
 // line(canvas, 100, 170, 160, 140);
@@ -50,3 +50,26 @@ text(canvas, 'D', 50, 105);
 // text(canvas, '2', 156, 180)
 // text(canvas, '4', 212, 180)
 // text(canvas, '5', 246, 180)
+// axis(canvas, 100, 100, 0);
+// axisName(canvas, 100, 100);
+// drawQuadraticFunction(canvas, 0.1, -3, -10, 100, 100);
+// dashLine(canvas, 130, 180, 130, 0);
+grid(canvas, 30, 50, 6, 6, 20, 50);
+line(canvas, 30, 150, 300, 150);
+line(canvas, 30, 150, 30, 10);
+// axisName(canvas, 30, 150, '年份/年', '工业生产总值/亿元');
+line(canvas, 30, 140, 80, 130);
+line(canvas, 80, 130, 180, 90);
+line(canvas, 180, 90, 230, 50);
+text(canvas, '2010', 20, 160);
+text(canvas, '2011', 70, 160);
+text(canvas, '2012', 120, 160);
+text(canvas, '2013', 170, 160);
+text(canvas, '2014', 220, 160);
+text(canvas, '20', 10, 135);
+text(canvas, '40', 10, 115);
+text(canvas, '60', 10, 95);
+text(canvas, '80', 10, 75);
+text(canvas, '100', 10, 55);
+text(canvas, '工业生产总值/亿元', 35, 20);
+text(canvas, '年份/年', 260, 160);

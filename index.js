@@ -158,6 +158,14 @@ function closeSummary() {
     elPaper.classList.remove('hide');
     elSummary.classList.add('hide');
 }
+function grid(canvas, x, y, rows, cols, rowSize, colSize) {
+    for (var i = 0; i < rows; i++) {
+        dashLine(canvas, x, y + i * rowSize, x + (cols - 1) * colSize, y + i * rowSize);
+    }
+    for (var j = 0; j < cols; j++) {
+        dashLine(canvas, x + j * colSize, y, x + j * colSize, y + (cols - 1) * rowSize);
+    }
+}
 function axisName(canvas, x, y, xName, yName) {
     if (xName === void 0) { xName = 'x'; }
     if (yName === void 0) { yName = 'y'; }
@@ -401,6 +409,12 @@ function rect(canvas, x, y, w, h) {
     ctx === null || ctx === void 0 ? void 0 : ctx.save();
     ctx === null || ctx === void 0 ? void 0 : ctx.strokeRect(x, y, w, h);
     ctx === null || ctx === void 0 ? void 0 : ctx.stroke();
+    ctx === null || ctx === void 0 ? void 0 : ctx.restore();
+}
+function fillRect(canvas, x, y, w, h) {
+    var ctx = canvas.getContext('2d');
+    ctx === null || ctx === void 0 ? void 0 : ctx.save();
+    ctx === null || ctx === void 0 ? void 0 : ctx.fillRect(x, y, w, h);
     ctx === null || ctx === void 0 ? void 0 : ctx.restore();
 }
 function drawLine(canvas, x1, y1, x2, y2, centerX, centerY) {
